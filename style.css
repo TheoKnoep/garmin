@@ -35,8 +35,9 @@ body {
 .container {
     width: 96%; 
     max-width: 420px;
-    height: 96svh;
+    /* height: 96svh; */
     /* margin: auto; */
+    padding-bottom: 20svh;
     padding: 1em;
     border-radius: 4px;
     box-shadow: 4px 4px 32px #00000040;
