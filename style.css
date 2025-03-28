@@ -1,0 +1,99 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+* {
+	margin: 0;
+	padding: 0;
+	/* font-size: 100%; */
+	/* font: inherit; */
+	vertical-align: baseline;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', 'Roboto', Helvetica, system-ui, sans-serif;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+
+
+
+
+
+
+/* Perso */
+body {
+    height: 100svh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.container {
+    width: 96%; 
+    max-width: 420px;
+    height: 96svh;
+    /* margin: auto; */
+    padding: 1em;
+    border-radius: 4px;
+    box-shadow: 4px 4px 32px #00000040;
+}
+
+
+header {
+    display: grid;
+    gap: 1em;
+    grid-template-rows: auto auto;
+    justify-items: center;
+    /* grid-template-columns: 32px auto; */
+}
+
+h1 {
+    font-size: 1.8em;
+    text-align: center;
+}
+
+p {
+    margin: 1em 0; 
+}
+
+p em {
+    font-size: .85em;
+}
+p.example {
+    background-color: #f1f1f1;
+    overflow: auto;
+    padding: 6px;
+}
+
+
+input {
+    width: 100%;
+    margin: 1em 0; 
+    padding: 1em; 
+    border-radius: 4px;
+    border: solid #bababa 1px;    
+}
+
+.btn-dl {
+    display: block; 
+    text-decoration: none;
+    background-color: var(--accent);
+    color: var(--accent-bg); 
+    text-align: center;
+    padding: .6em;
+    font-weight: bold;
+    border-radius: 4px;
+    background-color: #1d1d1d; 
+    color: #fff;
+}
+
+.error {
+    background-color: #ffebef;
+    color: #dd0000;
+    border-radius: 4px;
+    padding: 1em;
+}

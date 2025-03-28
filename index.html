@@ -1,11 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
     <title>Garmin downloader</title>
+
+
+
+    <!-- Minified version -->
+    <!-- <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css"> -->
+
+    <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
+    <main class="container">
+
+        <header>
+            <h1>Téléchargement GPX d'un parcours Garmin</h1>
+            <img src="assets/garmin-ico.png" width="48" alt="">
+        </header>
+
+        
+        
+
+        <p>Coller le lien de partage d'un parcours Garmin pour pouvoir le télécharger sur votre appareil</p>
+
+        <p class="example"><em>Ex&nbsp;: connect.garmin.com/modern/course/332110174</em></p>
+
+        <form action="" class="form">
+            <input id="garmin-link" type="text" class="form-control" placeholder="Coller le lien du parcours Garmin">
+        </form>
+        
     
+        <div class="link-container"></div>
+
+    </main>
+    
+    
+
+
+    <script>
+
+        const input = document.querySelector('#garmin-link')
+
+        input.addEventListener('input', event => {
+            console.log(event.currentTarget.value)
+            let id = parseParcoursID(event.currentTarget.value)
+
+            const dlContainer = document.querySelector('.link-container')
+
+            if (id !== 'invalid link') {
+                dlContainer.innerHTML = `<a class="btn-dl" href="${getDownloadLink(id)}" download>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download-icon lucide-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                    <span>GPX</span>
+                </a>`; 
+            } else {
+                dlContainer.innerHTML = `<p class="error">Lien invalide, veuillez vérifer le lien posté</p>`
+            }
+
+            
+        })
+
+
+        // !dev-only : 
+        // setTimeout(() => {
+        //     input.value = "https://connect.garmin.com/modern/course/332110174"
+        //     input.dispatchEvent( new Event('input') )
+        // }, 200)
+        
+        // -- 
+
+        function parseParcoursID(link) {
+            try {
+                let capture = /\/modern\/course\/(\d+)/.exec(link)
+                console.log( capture[1] )
+                let parcoursID = capture[1]
+                if (capture[1] ) {
+                    return capture[1] 
+                } else {
+                    return 'invalid link'
+                }
+                return parcoursID
+            } catch (err) {
+                console.error('invalid link')
+                return 'invalid link'
+            }
+
+        }
+
+        function getDownloadLink(id) {
+            return `https://connect.garmin.com/modern/proxy/course-service/course/gpx/${id}`
+        }
+    </script>
 </body>
 </html>
